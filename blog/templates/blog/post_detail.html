@@ -1,0 +1,62 @@
+{% extends 'blog/base.html' %}
+{% load custom_markdown %}
+{% load staticfiles %}
+
+{% block title %}
+{{ post.title }} - SQD
+{% endblock %}
+
+{% block content %}
+
+<div id="blogpost">
+  <div class="title">
+	<h1 class="text-center">{{ post.title }}</h1>
+	<h4 class="text-center">published on {{ post.date }}</h4>
+  </div>
+  <div class="btn-group pull-right">
+  	<a href="{% url 'blog:update-blog' post.id %}" class="btn btn-success btn-sm">Edit</a>
+  	<a href="{% url 'blog:delete-blog' post.id %}" class="btn btn-danger btn-sm">Delete</a>
+  </div>
+  <hr>
+  {% if post.image %}
+  <img src="{{ post.image.url }}" />
+  {% endif %}
+
+  <h4>
+  {{ post.body | custom_markdown }}
+  </h4>
+
+</div>
+
+
+
+<!--多说评论-->
+<div class="ds-thread" data-thread-key="{{ post.id }}" data-title="{{ post.title }}" data-url="{{ post.get_absolute_url }}"></div>
+<script type="text/javascript">
+
+	var duoshuoQuery = {short_name:"suqingdong"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+			|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+
+</script>
+
+<!--多说分享-->
+<div class="ds-share" data-thread-key="{{ post.id }}" data-title="{{ post.title }}" data-images="#" data-content="欢迎订阅" data-url="{{ post.get_absolute_url }}">
+    <div class="ds-share-aside-right">
+      <div class="ds-share-aside-inner"></div>
+      <div class="ds-share-aside-toggle">分享</div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+

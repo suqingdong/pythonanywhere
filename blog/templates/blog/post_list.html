@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+
+{% block title %}
+My Blog
+{% endblock %}
+
+
+{% block content %}
+
+<div id="blog">
+<a href="{% url 'blog:add-blog' %}" class="btn btn-warning btn-sm pull-right">New</a>
+ 	{% for post in object_list %}
+    	<h4>{{ post.date | date:"Y-m-d" }}<a href="{% url 'blog:detail' post.id %}"> <span class="glyphicon glyphicon-leaf" style="color:green"></span> {{ post.title }}</a></h4>
+  	{% endfor %}
+</div> 
+  
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Delete ?{% endblock %}
+
+{% block content %}
+
+	<div class="alert alert-danger" >
+
+		<form  action='' method='post'>
+			{% csrf_token %}
+			<p>Are you sure you want to the blog <strong>{{ object }}</strong>?</p>
+			<input type="submit" value="Confirm">
+		</form>
+
+	</div>
+{% endblock %}
