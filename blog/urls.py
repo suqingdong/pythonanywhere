@@ -1,7 +1,8 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.views.generic import ListView, DetailView
 
 from .models import Post
+
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
@@ -10,6 +11,7 @@ from django.core.urlresolvers import reverse_lazy
 app_name = 'blog'
 
 urlpatterns = [
+
     # /blog/
     url(r'^$', ListView.as_view(model=Post), name='index'),
 
